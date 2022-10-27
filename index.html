@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <header class="topo top"><img src="./img/logo 1.png"><ion-icon onclick="adicionarContato(this)" class="people" name="people"></ion-icon></header>
+        <div class="main">
+            <div class="chat"><p><time>(09:21:45)</time> João entra na sala... </p></div>
+            <div class="chat"><p><time>(09:21:45)</time> João entra na sala... </p></div>
+            <div class="chat"><p><time>(09:22:48)</time> João reservadamente para Maria: Oi gatinha quer tc? </p></div>
+            <div class="chat"><p><time>(09:21:45)</time> João entra na sala... </p></div>
+        </div>
+        <footer class="roda-pe top"><input placeholder="Escreva aqui..." type="text"><ion-icon class="vector" name="paper-plane-outline"></ion-icon></footer>
+    </div>
+    <div class="ctt escondido">
+        <aside class="add">
+            <div class="titulo"><p>Escolha um contato <br> para enviar mensagem:</p><ion-icon onclick="removerCtt(this)" class="voltar" name="close-circle-outline"></ion-icon></div>
+            <div class="contatos">
+                <div class="ctts"><ion-icon name="people"></ion-icon><p>Todos</p></div>
+                <div class="ctts"><ion-icon name="person-circle"></ion-icon><P>João</P></div>
+                <div class="ctts"><ion-icon name="person-circle"></ion-icon><p>Maria</p></div>
+            </div>
+            <div class="descricao"><p>Escolha a visibilidade:</p></div>
+            <div class="seguranca">
+                <div><ion-icon name="lock-open"></ion-icon><p>Público</p></div>
+                <div><ion-icon name="lock-closed"></ion-icon><p>Reservadamente</p></div>
+            </div>
+        </aside>
+    </div>
+    <div class="cadastrar escondido">
+        <div class="logo"><img src="./img/logo 1.png"></div>
+        <div class="input"><input type="text" placeholder="Digite seu nome"></div>
+        <div class="button"><button>Entrar</button></div>
+    </div>
+    <script type ="module" src ="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script> 
+    <script src="scrypt.js"></script>
+</body>
+</html>
