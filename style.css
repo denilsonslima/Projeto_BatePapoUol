@@ -244,7 +244,7 @@ input::placeholder {
     justify-content: center;
 }
 
-.cadastrar .button button {
+.cadastrar .button input {
     width: 100px;
     height: 100%;
     border: none;
