@@ -74,4 +74,32 @@ function adicionarContato(){
         usuarioLogado = input;
     }   
     adicionarParticipante()
+    setInterval(addCtt, 3000)
+}
+
+function verParticipantes(){
+    const a = document.querySelector(".ctt");
+    a.classList.remove("escondido")
+}
+
+function removerCtt(){
+    const a = document.querySelector(".ctt")
+    a.classList.add("escondido")
+}
+
+// bonus
+function addCtt(){
+    const a = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants")
+    a.then(addParticipante)
+}
+
+function addParticipante(valor){
+    let participante = valor.data;
+    const contatos = document.querySelector(".contatos")
+    contatos.innerHTML = "";
+    for(let i = 0; i < participante.length; i++){
+        contatos.innerHTML+= `
+        <div class="ctts"><ion-icon name="person-circle"></ion-icon><P>${participante[i].name}</P></div>
+    `
+    }
 }

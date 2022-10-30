@@ -9,10 +9,10 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
+    <div class="Principal">
         <header class="topo top">
             <img src="./img/logo 1.png">
-            <ion-icon class="people" name="people"></ion-icon>
+            <ion-icon onclick="verParticipantes(this)" class="people" name="people"></ion-icon>
         </header>
         <div class="main">
             <!-- SMS -->
@@ -24,11 +24,14 @@
     </div>
     <div class="ctt escondido">
         <aside class="add">
-            <div class="titulo"><p>Escolha um contato <br> para enviar mensagem:</p><ion-icon onclick="removerCtt(this)" class="voltar" name="close-circle-outline"></ion-icon></div>
+            <div class="titulo">
+                <p>Escolha um contato <br> para enviar mensagem:</p>
+                <ion-icon onclick="removerCtt(this)" class="voltar" name="close-circle-outline"></ion-icon>
+            </div>
             <div class="contatos">
-                <div class="ctts"><ion-icon name="people"></ion-icon><p>Todos</p></div>
+                <!-- <div class="ctts"><ion-icon name="people"></ion-icon><p>Todos</p></div>
                 <div class="ctts"><ion-icon name="person-circle"></ion-icon><P>João</P></div>
-                <div class="ctts"><ion-icon name="person-circle"></ion-icon><p>Maria</p></div>
+                <div class="ctts"><ion-icon name="person-circle"></ion-icon><p>Maria</p></div> -->
             </div>
             <div class="descricao"><p>Escolha a visibilidade:</p></div>
             <div class="seguranca">
