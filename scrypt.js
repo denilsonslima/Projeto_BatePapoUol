@@ -1,72 +1,77 @@
-const usuarioLogado = prompt("Informe Seu Nome: ")
-if (usuarioLogado !== ""){
-    setTimeout(participantesAtivos, 500)
-}
+let value; let nomes = [];
+let usuarioLogado;
+const main = document.querySelector(".main")
 
-// let value;
-// const sms = []
-// document.addEventListener("keypress", function(e){
-//     if (e.key === "Enter"){
-//         const btn = document.querySelector("#send")
-//         btn.click()
-        
-//         const name = document.querySelector("#input")
-//         value = name.value;
-//         sms.push(value)
-//         participantesAtivos()
-//     }
-    
-// });
-
-
-function adicionarContato(seletor){
-    const aparecer = document.querySelector(".ctt")
-    aparecer.classList.remove("escondido")
-}
-
-function removerCtt(seletor){
-    const desaparecer = document.querySelector(".ctt")
-    desaparecer.classList.add("escondido")
-}
-
-let nomes = [];
-
-function iniciar(){
+function iniciarChat(){
     const promessa = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages")
-    promessa.then(funcao)
+    promessa.then(pegarSMS)
+    manterConexao()
 }
-iniciar()
-setInterval(iniciar, 5000)
 
-function funcao(valor){
+function pegarSMS(valor){
     nomes = valor.data;
-    rederizarReceitas()
-}
+    renderizarMensagens()
+}   
 
-let main, text;
-function rederizarReceitas(){
-    main = document.querySelector(".main")
+function renderizarMensagens(){
     main.innerHTML = "";
     for (let i = 0; i < nomes.length; i++){
-        let name = nomes[i].from
-        let nome = name[0].toUpperCase() + name.substring(1) //Primeira letra Maiúscula
-        let time = nomes[i].time
-        text = nomes[i].text
+        let name = nomes[i].from;
+        let nome = name[0].toUpperCase() + name.substring(1); //Primeira letra Maiúscula
+        let time = nomes[i].time;
+        text = nomes[i].text;
         main.innerHTML+= `
         <div class="chat"><p><time>(${time})</time> <span>${nome}</span> ${text}</p></div>
-        `
+    `
+    }
+    main.lastElementChild.scrollIntoView();
+}
+
+function adicionarParticipante(){
+    const novoParticipante = {name: usuarioLogado}
+    const participante = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", novoParticipante)
+    participante.then(iniciarChat)
+    setInterval(iniciarChat, 3000)
+    setInterval(manterConexao, 3000)
+} 
+
+function manterConexao(){
+    const userAtivo = {name: usuarioLogado}
+    axios.post("https://mock-api.driven.com.br/api/v6/uol/status", userAtivo) 
+}
+
+function pegarInput(seletor){
+    const elementoPai = seletor.parentNode;
+    value = elementoPai.querySelector(".pegarSMS").value;
+    let b = elementoPai.querySelector(".pegarSMS")
+    b.value = ""
+    enviarSMS()
+}
+
+function enviarSMS(){
+    let novaMensagem = {
+        from: usuarioLogado,
+        to: "Todos",
+        text: value,
+        type: "message"
+    }
+    console.log(novaMensagem)
+    const a = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", novaMensagem)
+    a.then(promisse)
+
+    function promisse() {
+        renderizarMensagens()
     }
 }
 
-function participantesAtivos(){
-    const addNome = {
-        name: usuarioLogado
-    }
-    const requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", addNome)
-    requisicao.then(deuCerto)
-    
-    function deuCerto(valor){
-        rederizarReceitas()
-    }
-    
-} 
+function adicionarContato(){
+    const input = document.querySelector(".cadastro").value
+    const apagarInput = document.querySelector(".cadastro")
+    apagarInput.value = "";
+    if (input !== ""){
+        const a = document.querySelector(".cadastrar");
+        a.classList.add("escondido")
+        usuarioLogado = input;
+    }   
+    adicionarParticipante()
+}

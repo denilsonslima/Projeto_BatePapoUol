@@ -26,8 +26,8 @@ body {
 }
 
 .main {
-    margin-top: 106px;
-    margin-bottom: 80px;
+    margin-top: 90px;
+    margin-bottom: 85px;
 }
 
 .topo img:nth-child(1) {
@@ -79,10 +79,6 @@ input::placeholder {
     font-size: 18px;
     line-height: 21px;
     color: #000000;
-}
-
-#send {
-    visibility: hidden;
 }
 
 .vector {
@@ -245,15 +241,13 @@ input::placeholder {
 }
 
 .cadastrar .button {
-    width: 100%;
-    height: 45px;
     display: flex;
     justify-content: center;
 }
-
-.cadastrar .button input {
+.cadastrar button  {
     width: 100px;
-    height: 100%;
+    height: 45px;   
+    margin: 0px auto;
     border: none;
     border-radius: 9px;
     background-color: #E7E7E7;
