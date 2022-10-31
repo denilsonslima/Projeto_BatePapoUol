@@ -20,12 +20,17 @@ function renderizarMensagens(){
         let nome = name[0].toUpperCase() + name.substring(1); //Primeira letra Maiúscula
         let time = nomes[i].time;
         let text = nomes[i].text;
+        let to = nomes[i].to
         if ((text === "entra na sala...") || (text === "sai da sala...")){
             main.innerHTML+= `
             <div class="chat entrar"><p><time>(${time})</time> <span>${nome}</span> ${text}</p></div>`
-        } else {
+        } else if (to !== "Todos") {
             main.innerHTML+= `
-        <div class="chat"><p><time>(${time})</time> <span>${nome}</span> ${text}</p></div>`
+        <div class="chat rosa"><p><time>(${time})</time> <span>${nome}</span>  Reservadamente para  <span>${to}:</span>  ${text}</p></div>`
+        }
+        else {
+            main.innerHTML+= `
+        <div class="chat"><p><time>(${time})</time> <span>${nome}</span>  para  <span>${to}:</span>  ${text}</p></div>`
         }
         
     }
@@ -89,7 +94,8 @@ function adicionarContato(){
         usuarioLogado = input;
     }   
     adicionarParticipante()
-    setInterval(addCtt, 3000)
+    setTimeout(addCtt, 500)
+    setInterval(addCtt, 10000)
 }
 
 function verParticipantes(){
@@ -114,7 +120,12 @@ function addParticipante(valor){
     contatos.innerHTML = "";
     for(let i = 0; i < participante.length; i++){
         contatos.innerHTML+= `
-        <div class="ctts"><ion-icon name="person-circle"></ion-icon><P>${participante[i].name}</P></div>
+        <div onclick="selecionarCtt(this)" class="ctts"><ion-icon name="person-circle"></ion-icon><P>${participante[i].name}</P><ion-icon class="marcado" name="checkmark-outline"></ion-icon></div>
     `
     }
+}
+
+function selecionarCtt(seletor){
+    const a = seletor.querySelector(".marcado")
+    a.classList.add("aparecer")
 }

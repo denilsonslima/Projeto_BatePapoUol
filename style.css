@@ -265,3 +265,22 @@ input::placeholder {
 .escondido {
     display: none;
 }
+
+.ctts {
+    position: relative;
+}
+.marcado {
+    color: green;
+    position: absolute;
+    top: 10;
+    right: 10px;
+    opacity: 0;
+}
+
+.aparecer {
+    opacity: 1;
+}
+
+.rosa {
+    background-color: #FFDEDE;
+}
