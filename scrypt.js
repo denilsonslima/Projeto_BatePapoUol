@@ -19,10 +19,15 @@ function renderizarMensagens(){
         let name = nomes[i].from;
         let nome = name[0].toUpperCase() + name.substring(1); //Primeira letra Maiúscula
         let time = nomes[i].time;
-        text = nomes[i].text;
-        main.innerHTML+= `
-        <div class="chat"><p><time>(${time})</time> <span>${nome}</span> ${text}</p></div>
-    `
+        let text = nomes[i].text;
+        if ((text === "entra na sala...") || (text === "sai da sala...")){
+            main.innerHTML+= `
+            <div class="chat entrar"><p><time>(${time})</time> <span>${nome}</span> ${text}</p></div>`
+        } else {
+            main.innerHTML+= `
+        <div class="chat"><p><time>(${time})</time> <span>${nome}</span> ${text}</p></div>`
+        }
+        
     }
     main.lastElementChild.scrollIntoView();
 }
@@ -31,8 +36,14 @@ function adicionarParticipante(){
     const novoParticipante = {name: usuarioLogado}
     const participante = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", novoParticipante)
     participante.then(iniciarChat)
+    participante.catch(erro)
     setInterval(iniciarChat, 3000)
     setInterval(manterConexao, 3000)
+
+    function erro(){
+        window.location.reload()
+        alert("Nome em uso, tente outro!")
+    }
 } 
 
 function manterConexao(){
@@ -55,12 +66,16 @@ function enviarSMS(){
         text: value,
         type: "message"
     }
-    console.log(novaMensagem)
     const a = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", novaMensagem)
     a.then(promisse)
+    a.catch(erro)
 
     function promisse() {
         renderizarMensagens()
+    }
+
+    function erro(){
+        window.location.reload()
     }
 }
 
