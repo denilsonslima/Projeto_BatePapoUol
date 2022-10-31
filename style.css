@@ -45,6 +45,7 @@ body {
     background-color: #FFFFFF;
     border-radius: 2px;
     margin-bottom: 5px;
+    word-break: break-word;
 }
 
 .chat p {
