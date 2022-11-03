@@ -6,22 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Bate-papo UOL</title>
 </head>
 <body>
-    <div class="Principal">
-        <header class="topo top">
-            <img src="./img/logo 1.png">
-            <ion-icon onclick="verParticipantes(this)" class="people" name="people"></ion-icon>
-        </header>
-        <div class="main">
-            <!-- SMS -->
-        </div>
-        <footer class="roda-pe top">
-            <input class="pegarSMS" placeholder="Escreva aqui..." type="text">
-            <ion-icon onclick="pegarInput(this)" class="vector" name="paper-plane-outline"></ion-icon>
-        </footer>
+    <header class="topo">
+        <img src="./img/logo 1.png">
+        <ion-icon onclick="verParticipantes(this)" class="people" data-test="open-participants" name="people"></ion-icon>
+    </header>
+    <div class="main">
+        <!-- SMS -->
     </div>
+    <footer class="roda-pe">
+        <div>
+            <input class="pegarSMS"  data-test="input-message" placeholder="Escreva aqui..." type="text">
+            <span class="enviando">Enviando para Todos</span>
+        </div>
+        <ion-icon onclick="pegarInput(this)" class="vector" data-test="send-message" name="paper-plane-outline"></ion-icon>
+    </footer>
+    
     <div class="ctt escondido">
         <aside class="add">
             <div class="titulo">
@@ -35,15 +37,15 @@
             </div>
             <div class="descricao"><p>Escolha a visibilidade:</p></div>
             <div class="seguranca">
-                <div><ion-icon name="lock-open"></ion-icon><p>Público</p></div>
-                <div><ion-icon name="lock-closed"></ion-icon><p>Reservadamente</p></div>
+                <div><ion-icon data-test="public" name="lock-open"></ion-icon><p>Público</p></div>
+                <div><ion-icon data-test="private" name="lock-closed"></ion-icon><p>Reservadamente</p></div>
             </div>
         </aside>
     </div>
     <div class="cadastrar">
         <div class="logo"><img src="./img/logo 1.png"></div>
-        <div class="input"><input class="cadastro" type="text" placeholder="Digite seu nickname"></div>
-        <div class="button"><button onclick="adicionarContato(this)">Enviar</button></div>
+        <div class="input" data-test="input-name"><input class="cadastro" type="text" placeholder="Digite seu nickname"></div>
+        <div class="button" data-test="send-name"><button onclick="adicionarContato(this)">Enviar</button></div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

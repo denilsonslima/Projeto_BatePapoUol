@@ -23,14 +23,14 @@ function renderizarMensagens(){
         let to = nomes[i].to
         if ((text === "entra na sala...") || (text === "sai da sala...")){
             main.innerHTML+= `
-            <div class="chat entrar"><p><time>(${time})</time> <span>${nome}</span> ${text}</p></div>`
+            <div class="chat entrar" data-test="message"><p><time>(${time})</time> <span>${nome}</span> ${text}</p></div>`
         } else if (to !== "Todos") {
             main.innerHTML+= `
-        <div class="chat rosa"><p><time>(${time})</time> <span>${nome}</span>  Reservadamente para  <span>${to}:</span>  ${text}</p></div>`
+        <div class="chat rosa" data-test="message"><p><time>(${time})</time> <span>${nome}</span>  Reservadamente para  <span>${to}:</span>  ${text}</p></div>`
         }
         else {
             main.innerHTML+= `
-        <div class="chat"><p><time>(${time})</time> <span>${nome}</span>  para  <span>${to}:</span>  ${text}</p></div>`
+        <div class="chat" data-test="message"><p><time>(${time})</time> <span>${nome}</span>  para  <span>${to}:</span>  ${text}</p></div>`
         }
         
     }
